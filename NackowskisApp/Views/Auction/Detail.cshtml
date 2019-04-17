@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model NackowskisApp.ViewModels.DetailViewModel
+@{
+    ViewData["Title"] = "Detail";
+
+    DateTime parsedDate = DateTime.Parse(Model.Auction.SlutDatum);
+
+}
+
+
+<div class="col-lg-4">
+
+
+    <h2>@Model.Auction.Titel </h2><a asp-controller="Auction" asp-action="UpdateAuctionAsync" asp-route-auctionId="@Model.Auction.AuktionID">Edit</a>
+    <a asp-controller="Auction" asp-action="DeleteAuctionAsync" asp-route-auctionId="@Model.Auction.AuktionID">Delete</a>
+    <h4>Ends: @parsedDate</h4>
+
+
+</div>
+@if (DateTime.Parse(Model.Auction.SlutDatum) > DateTime.Now)
+{
+
+    <div class="col-lg-8">
+        <hr />
+        <form class="form-inline col-md-8" asp-controller="Auction" asp-action="AddBidAsync" method="post">
+            <div class="form-group">
+                <input asp-for="Bid.Summa" class="form-control" />
+
+                <input type="hidden" asp-for="Bid.AuktionID" value="@Model.Auction.AuktionID" />
+            </div>
+
+            <button class="btn" type="submit">Add bid</button>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+        </form>
+
+    </div>
+
+
+    <div class="col-md-8 pull-right">
+        <div class="row">
+
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th><label asp-for="Bids"></label></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var bid in Model.Bids)
+                    {
+
+                        <tr>
+
+                            <td>@bid.Summa kr</td>
+                            <td><a asp-action="DeleteBidAsync" asp-controller="Auction" asp-route-bidId="@bid.BudID">Delete</a></td>
+                        </tr>
+                    }
+                    <tr>
+                        <td><b>@Model.Auction.Utropspris kr</b></td>
+                        <td><b>Starting bid</b></td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+}
+else
+{ <div class="col-lg-8">
+
+    <hr />
+    <p>The auction is finished.</p>
+    @if (Model.Bids.Count() < 1)
+    {
+        <p>The auction didn't get any bids.</p>
+    }
+    else
+    {
+        <p><b>Winning bid: @Model.Bids.Select(x => x.Summa).Max() kr</b></p>
+
+    }
+</div>
+        }
+
+

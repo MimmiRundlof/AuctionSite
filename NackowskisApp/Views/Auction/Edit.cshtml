@@ -1,0 +1,41 @@
+﻿@model NackowskisApp.Models.Auction
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>EditAuction</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateAuctionAsync" asp-controller="Auction" method="post">
+            <h4>Edit auction.</h4>
+            <hr />
+            <input type="hidden" asp-for="AuktionID" value="@Model.AuktionID" />
+            <input type="hidden" asp-for="Gruppkod" value="@Model.Gruppkod" />
+            <input type="hidden" asp-for="StartDatum" value="@Model.StartDatum" />
+            
+            <div class="form-group">
+                <label>Title</label>
+                <input asp-for="Titel" class="form-control" />
+                <span asp-validation-for="Titel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input asp-for="Beskrivning" class="form-control" />
+                <span asp-validation-for="Beskrivning" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Ending date</label>
+                <input asp-for="SlutDatum" type="datetime-local" class="form-control" />
+                <span asp-validation-for="SlutDatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Starting bid</label>
+                <input asp-for="Utropspris" class="form-control" />
+                <span asp-validation-for="Utropspris" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Edit auction</button>
+        </form>
+    </div>
+</div>

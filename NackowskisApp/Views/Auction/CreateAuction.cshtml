@@ -1,0 +1,38 @@
+﻿@model NackowskisApp.Models.Auction
+@{
+    ViewData["Title"] = "CreateAuction";
+}
+
+<h2>Create auction</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateAuctionAsync" asp-controller="Auction" method="post">
+            <h4>Create a new auction.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label>Title</label>
+                <input asp-for="Titel" class="form-control" />
+                <span asp-validation-for="Titel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input asp-for="Beskrivning" class="form-control" />
+                <span asp-validation-for="Beskrivning" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>End date</label>
+                <input asp-for="SlutDatum"type="datetime-local" class="form-control" />
+                <span asp-validation-for="SlutDatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Starting bid</label>
+                <input asp-for="Utropspris" class="form-control" />
+                <span asp-validation-for="Utropspris" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Create auction</button>
+        </form>
+    </div>
+    </div>

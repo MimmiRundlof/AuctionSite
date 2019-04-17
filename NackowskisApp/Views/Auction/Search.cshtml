@@ -1,19 +1,28 @@
 ﻿@model NackowskisApp.ViewModels.IndexViewModel
 @{
     ViewData["Title"] = "Home Page";
+
+
+    var test = Model.Auctions;
 }
 
-<div class="body-content">
-    <h2>Auctions</h2>
+
+
+<div class="container">
+    <h2>Search results</h2>
+
+
     <div class="row">
 
-        <div class="row col-md-8">
-            <table class="display searchresults">
+        <div class="col-md-8">
+
+            <table class="searchresults">
                 <thead>
                     <tr>
                         <th>Titel</th>
                         <th>Description</th>
                         <th>End date</th>
+                        <td>Status</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,24 +32,28 @@
                             <td><a asp-controller="Auction" asp-action="Detail" asp-route-auctionId="@auction.AuktionID">@auction.Titel</a></td>
                             <td>@auction.Beskrivning</td>
                             <td>@auction.SlutDatum</td>
+                            @if (DateTime.Parse(auction.SlutDatum) < DateTime.Now)
+                            {
+                                <td>Ended</td>
+                            }
+                            else
+                            {
+                                <td>Active</td>
+                            }
+
                         </tr>
-
                     }
-
 
                 </tbody>
             </table>
 
 
         </div>
-
     </div>
-
 </div>
 
 
 @section Scripts{
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 }

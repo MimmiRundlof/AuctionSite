@@ -1,14 +1,15 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 50px;
+    padding-top: 300px;
     padding-bottom: 20px;
+    background-color: lightgray;
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
+    padding-left: 43px;
     padding-right: 15px;
 }
 
@@ -34,4 +35,60 @@ body {
     .carousel-caption {
         display: none;
     }
+}
+
+#search-label {
+    color: darkgrey;
+}
+
+.navbar-header {
+    background-image: url('../images/auction.jpg');
+    height: 250px;
+    width: 100%;
+}
+
+
+.headerTitle {
+    margin: 30px;
+    padding: 10px;
+    padding-right: 30px;
+
+    background: #ffffff;
+    opacity: 0.8;
+    float: left;
+    border-radius: 7px;
+}
+
+    .headerTitle > p {
+        font-size: 20px;
+    }
+
+    .headerTitle > a {
+        font-size: 60px;
+        color: black;
+    }
+
+        .headerTitle > a:hover, a:active {
+            color: black;
+            text-decoration: none;
+        }
+
+.searchBox {
+    float: left;
+    margin-top: 10px;
+}
+
+.loginPanel {
+    padding-left: 138px;
+    padding-right: 138px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+
+.bids {
+    float: right;
 }
